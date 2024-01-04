@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro'
 import '@fontsource-variable/onest';
+import { getI18n } from '../i18n';
 
 interface Props {
 	description: string;
@@ -11,7 +12,7 @@ const { title , description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={Astro.currentLocale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -50,5 +51,29 @@ const { title , description } = Astro.props;
 	{
 		color: rgba( 255 , 255 , 255 , 1);
 		font-weight: 700;
+	}
+	
+	#header
+	{
+		/* blur a header cuando se hace scroll */
+		animation: blur linear both;
+		animation-timeline: scroll();
+		animation-range: 0 400px;
+	}
+
+	@keyframes blur {
+		from
+		{
+
+		}
+		to
+		{
+			box-shadow: 
+				0px 5px 50px -5px hsla(0 , 0%, 100% , 0.1),
+				0px 0px 0px 1px hsla(0 , 0%, 100% , 0.1),
+			;
+			background-color: rgb( 0 0 0 / 3%); 
+			backdrop-filter: blur(10px);
+		}
 	}
 </style>
