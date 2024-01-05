@@ -1,29 +1,90 @@
 ---
 import Logo from "./Logo.astro";
+import { getI18n } from '../i18n'
+
+const i18n = getI18n(Astro.currentLocale)
 
 ---
+
 <!-- backdrop-blur-sm -->
-<header id="header" class="fixed w-screen py-4 z-20  top-0 px-8 lg:px-0">
-    <div class="grid grid-cols-3 max-w-7xl mx-auto items-center justify-between">
-        <a href="/">
-            <Logo class="w-12" />
-        </a>
-        <nav class="col-span-1 justify-center">
-            <ul class="flex gap-4 justify-center">
-                <li>
-                    <a class="hover:underline" href="">
-                        INFO
-                    </a>
-                </li>
-                <li>
-                    <a class="hover:underline" href="">
-                        ARCHIVO
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <a class="border rounded-full duration-300 inline-block border-white px-4 py-2 justify-self-end hover:bg-white hover:text-black" href="">
-            ESLAND: EL DOCUMENTAL
-        </a>
+<header id="header" class="fixed w-screen py-4 z-20 top-0 px-8 lg:px-0">
+  <div
+    class="grid grid-cols-2 md:grid-cols-3 max-w-7xl mx-auto items-center justify-between"
+  >
+    <a href="/">
+      <Logo class="w-12" />
+    </a>
+    <nav class="hidden md:flex col-span-1 justify-center">
+      <ul class="flex gap-4 justify-center">
+        <li>
+          <a class="hover:underline" href="#info"> { i18n.HEADER_LINK_1 } </a>
+        </li>
+        <li>
+          <a class="hover:underline" href="#video"> { i18n.HEADER_LINK_2 }</a>
+        </li>
+      </ul>
+    </nav>
+
+    <a
+      class="hidden md:inline-block border rounded-full duration-300 border-white px-4 py-2 justify-self-end hover:bg-white hover:text-black"
+      href=""
+    >
+      ESLAND: EL DOCUMENTAL
+    </a>
+
+    <div class="flex items-center md:hidden">
+      <button
+        id="menu-toggle"
+        class="flex flex-grow basis-0 justify-end text-2xl md:hidden z-50"
+      >
+        <span class="text-3xl" id="menu-icon">☰</span>
+      </button>
     </div>
+
+    <nav
+      id="mobile-menu"
+      class="bg-black/95 backdrop-blur-3xl hidden w-full flex-col items-center text-center text-2xl fixed top-0 left-0 right-0 h-dvh place-content-center"
+    >
+      <a class="anchors_mobile_link my-4 hover:underline" href="#info">{ i18n.HEADER_LINK_1 } </a>
+      <a class="anchors_mobile_link my-4 hover:underline" href="#video"> { i18n.HEADER_LINK_2 } </a>
+      <a
+        class="anchors_mobile_link text-base mt-4 inline-block border rounded-full duration-300 border-white px-4 py-2 justify-self-end hover:bg-white hover:text-black"
+        href="/"
+      >
+        ESLAND: EL DOCUMENTAL
+      </a>
+    </nav>
+  </div>
 </header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    
+    const anchors_mobile_link = document.querySelectorAll(".anchors_mobile_link");
+
+    if (!menuToggle || !mobileMenu || !menuIcon) {
+      return;
+    }
+
+    anchors_mobile_link.forEach(link => {
+    link.addEventListener("click", function(event) {
+        // Tu lógica aquí
+        // Por ejemplo, puedes prevenir el comportamiento por defecto del enlace
+
+        // Luego, puedes realizar acciones adicionales, como el desplazamiento suave
+        mobileMenu.classList.toggle("flex");
+        mobileMenu.classList.toggle("hidden");
+    });
+});
+
+
+    menuToggle.addEventListener("click", function () {
+      mobileMenu.classList.toggle("hidden");
+      mobileMenu.classList.toggle("flex");
+      menuIcon.textContent = menuIcon.textContent === "☰" ? "✕" : "☰";
+    });
+  });
+</script>

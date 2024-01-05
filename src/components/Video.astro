@@ -3,19 +3,28 @@
 ---
 
 <div class="w-full relative">
-    <img
-        class="absolute top-20 w-[59vw] z-50 left-0 right-0 mx-auto"
-        src="/titulo.svg"
-        alt="Esland titulo"
-    />
-    <video
-        class="w-full h-full object-cover object-top animate-ease-in-out animate-fade animate-duration-1000 cp-v"
-        src="/video.webm"
-        style="clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 50% 100%, 0 85%);"
-        autoplay
-        loop
-        muted></video>
-    <!-- <video
+  <div
+    class="absolute top-32 md:top-20 z-50 left-0 right-0 mx-auto flex justify-center flex-col items-center"
+  >
+    <img class="w-[90vw] md:w-[59vw]" src="/titulo.svg" alt="Esland titulo" />
+    <a
+      class="inline-block text-xl border rounded-full duration-300 absolute especial-top
+        border-white font-semibold px-6 py-4 justify-self-end hover:bg-white hover:text-black"
+      href="#info"
+    >
+    REVIVE LA 2ª EDICIÓN 
+    </a>
+  </div>
+
+  <video
+    class="w-full h-full object-cover object-top animate-ease-in-out animate-fade animate-duration-1000 cp-v"
+    src="/video.webm"
+    style="clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 50% 100%, 0 85%);"
+    autoplay
+    loop
+    muted></video>
+
+  <!-- <video
         class="absolute -bottom-48 blur-3xl -z-10"
         src="/video.mp4"
         autoplay
@@ -24,7 +33,16 @@
 </div>
 
 <style>
-    /* .blur-3xl
+    .especial-top
+     {
+        top: 34rem;
+     }
+  @media (max-width: 480px) {
+    video {
+      min-height: 60vh;
+    }
+  }
+  /* .blur-3xl
     {
         filter: var(--tw-blur) var(1) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
     } */
