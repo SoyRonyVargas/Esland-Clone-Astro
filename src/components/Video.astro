@@ -1,25 +1,84 @@
 ---
+import { getI18n } from "../i18n";
+import Logo from "./Logo.astro";
 
+const i18n = getI18n(Astro.currentLocale);
 ---
 
-<div class="w-full relative">
+<div class="relative h-[90vh] w-full max-w-[100vw] md:aspect-video md:h-[95vh] ">
   <div
-    class="absolute top-32 md:top-20 z-50 left-0 right-0 mx-auto flex justify-center flex-col items-center"
+    class="absolute inset-0 h-full  left-0 right-0 mx-auto flex justify-center flex-col items-center"
   >
-    <img class="w-[90vw] md:w-[59vw]" src="/titulo.svg" alt="Esland titulo" />
+  <section
+      class="absolute z-10 animate-fade-up flex justify-center items-center gap-8 flex-col"
+    >
+      
+    <h1
+        class="flex items-center gap-5 text-4xl md:text-6xl lg:gap-20 lg:text-8xl font-tomaso"
+      >
+        <span>E</span>
+        <span>S</span>
+        <span>L</span>
+        <Logo
+          class="h-9 w-auto md:h-[3.75rem] lg:h-24 scale-150"
+          aria-label="A"
+        />
+        <span>N</span>
+        <span>D</span>
+      </h1>
+
+      <p
+        class="subtitle mt-5 text-xl lg:text-2xl text-center text-wrap font-jura px-4"
+      >
+        {i18n.HERO_SUBTITLE}
+      </p>
+
+      <a
+        class="inline-block text-xl border rounded-full duration-300 relative
+            border-white font-semibold px-6 py-4 justify-self-end hover:bg-white hover:text-black"
+          href="#info"
+        >
+        REVIVE LA 2ª EDICIÓN
+      </a> 
+      <!-- <Button
+        target="_self"
+        className="text-blue-950 animate-fade-up bg-white"
+        url={translatePath('/vota/')}
+      >
+        {i18n.VIDEO_BUTTON}
+      </Button> -->
+    </section>
+    <!-- <h1
+      class="top-64 relative flex flex-col items-center text-4xl  md:text-6xl lg:gap-20 lg:text-8xl font-tomaso"
+    >
+      <div class="flex items-center gap-5  md:text-6xl lg:gap-20 lg:text-8xl">
+        <span>E</span>
+        <span>S</span>
+        <span>L</span>
+        <Logo class="h-9 w-auto md:h-[3rem] lg:h-20 scale-150" aria-label="A" />
+        <span>N</span>
+        <span>D</span>
+      </div>
+
+      <p
+        class="subtitle text-xl lg:text-2xl font-jura text-center text-wrap px-4"
+      >
+        {i18n.HERO_SUBTITLE}
+      </p>
+    </h1>
+
     <a
       class="inline-block text-xl border rounded-full duration-300 absolute especial-top
         border-white font-semibold px-6 py-4 justify-self-end hover:bg-white hover:text-black"
       href="#info"
     >
-    REVIVE LA 2ª EDICIÓN 
-    </a>
+      REVIVE LA 2ª EDICIÓN
+    </a> -->
   </div>
 
   <video
     class="w-full h-full object-cover object-top animate-ease-in-out animate-fade animate-duration-1000 cp-v"
     src="/video.webm"
-    style="clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 50% 100%, 0 85%);"
     autoplay
     loop
     muted></video>
@@ -33,10 +92,9 @@
 </div>
 
 <style>
-    .especial-top
-     {
-        top: 34rem;
-     }
+  .especial-top {
+    top: 34rem;
+  }
   @media (max-width: 480px) {
     video {
       min-height: 60vh;
