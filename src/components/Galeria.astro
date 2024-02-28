@@ -1,0 +1,62 @@
+---
+// import datos from "../../public/archivo-page/editions-info.json";
+import { type GaleriaData } from "../types";
+import "photoswipe/style.css";
+
+import editionsInfo from "../data/meta-gallery.json"
+const editionIndex = Number(1) - 1
+const photos = editionsInfo[editionIndex].slice(0, 12)
+---
+
+<section class="max-w-6xl mx-auto py-20 px-20">
+  <h1>Galeria</h1>
+
+  <div
+    class="grid-cols-3 grid gap-8 mx-auto py-20"
+    id="galeria"
+  >
+    {
+    //   Array.from({ length: 9 }).map((_ , i) => (
+    photos.map(({ height, width } , i) => (
+        <a
+          href={`/archivo-page/1/gallery/thumbnails/img-${i + 1}.webp`}
+          target="_blank"
+          data-cropped="true"
+          data-pswp-width={width}
+          data-pswp-height={height}
+          class="rounded-xl hover:scale-105 transition-all relativehover:shadow-md"
+        >
+         { //<img
+        //     class="blur-lg absolute inset-0 opacity-70 -z-10 rounded-xl object-cover w-full h-full min-h-[450px] max-h-[450px]"
+        //     loading="lazy"
+        //     src={`/archivo-page/1/gallery/img-${i + 1}.webp`}
+        //     alt="Fotografía de los premios ESLAND"
+        //   />/*/
+      }
+          <img
+            class="rounded-xl w-full h-full min-h-[450px] max-h-[450px] object-cover"
+            loading="lazy"
+            src={`/archivo-page/1/gallery/img-${i + 1}.webp`}
+            alt="Fotografía de los premios ESLAND"
+          />
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
+
+  const lightbox = new PhotoSwipeLightbox({
+    // may select multiple "galleries"
+    gallery: "#galeria",
+
+    // Elements within gallery (slides)
+    children: "a",
+
+    // setup PhotoSwipe Core dynamic import
+    pswpModule: () => import("photoswipe"),
+  });
+  lightbox.init();
+</script>

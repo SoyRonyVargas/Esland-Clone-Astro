@@ -1,14 +1,25 @@
 ---
-import HeroContainer from '../components/HeroContainer.astro';
-import Layout from '../layouts/Layout.astro';
-
+import Contador from "../components/Contador.astro";
+import HeroContainer from "../components/HeroContainer.astro";
+import Layout from "../layouts/Layout.astro";
+import Galeria from '../components/Galeria.astro'
 ---
 
-<Layout 
-    title='1'
-    description='1'
->
-    <HeroContainer
-        img='/archivo-background.webp'
-    />
+<Layout title="Archivo - Esland" description="1">
+  <HeroContainer img="/archivo-background.webp">
+    <h1 class="my-16 text-5xl font-medium font-tomaso tracking-wider">
+      EDICIONES ANTERIORES
+    </h1>
+    <a
+      class="inline-block text-xl border rounded-full duration-300 relative
+        border-white font-semibold px-6 py-4 justify-self-end hover:bg-white hover:text-black"
+      href="#info"
+    >
+      REVIVE LA 2ª EDICIÓN
+    </a>
+  </HeroContainer>
+  <main>
+    <Contador/>
+    <Galeria client:visible />
+  </main>
 </Layout>
