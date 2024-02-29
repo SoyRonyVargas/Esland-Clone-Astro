@@ -2,7 +2,12 @@
 import Contador from "../components/Contador.astro";
 import HeroContainer from "../components/HeroContainer.astro";
 import Layout from "../layouts/Layout.astro";
-import Galeria from '../components/Galeria.astro'
+// import Galeria from '../components/Galeria.astro'
+import Gallery from '../components/Gallery'
+
+import { getI18n } from '../i18n'
+
+const i18n = getI18n(Astro.currentLocale)
 ---
 
 <Layout title="Archivo - Esland" description="1">
@@ -19,7 +24,8 @@ import Galeria from '../components/Galeria.astro'
     </a>
   </HeroContainer>
   <main>
-    <Contador/>
-    <Galeria client:visible />
+    <Contador client:visible />
+    <!-- <Galeria client:visible /> -->
+    <Gallery i18n={i18n} client:visible />
   </main>
 </Layout>

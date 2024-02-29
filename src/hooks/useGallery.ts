@@ -2,25 +2,25 @@ import { useState, useEffect, useRef } from 'preact/hooks';
 import editionsInfo from "../data/meta-gallery.json"
 
 export const useGallery = ({edicion}:{edicion:string}) => {
-    const offset = 10
+    const offset = 12
     const first = useRef<HTMLAnchorElement>(null)
     const [isExpanded, setIsExpanded] = useState(false)
     const editionIndex = Number(edicion) - 1
     const photos = editionsInfo[editionIndex].slice(0, offset)
 
     useEffect(() => {
-        // const init = async () => {
-        //     // await import('@appnest/masonry-layout')
-        //     const module = await import("photoswipe/lightbox")
-        //     const PhotoSwipeLightbox = module.default
-        //     const lightbox = new PhotoSwipeLightbox({
-        //       gallery: "#gallery",
-        //       children: "a",
-        //       pswpModule: () => import("photoswipe"),
-        //     })
-        //     lightbox.init()
-        // }
-        // init()
+        const init = async () => {
+            // await import('@appnest/masonry-layout')
+            const module = await import("photoswipe/lightbox")
+            const PhotoSwipeLightbox = module.default
+            const lightbox = new PhotoSwipeLightbox({
+              gallery: "#galeria",
+              children: "a",
+              pswpModule: () => import("photoswipe"),
+            })
+            lightbox.init()
+        }
+        init()
       }, [])
 
       const LoadMore = async (e:MouseEvent) => {
